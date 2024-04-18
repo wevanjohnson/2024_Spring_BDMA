@@ -1,8 +1,6 @@
----
-title: "High Throughput Biomedical Data Analysis"
-date: Spring (April-June), 2024
-output: word_document
----
+# "High Throughput Biomedical Data Analysis"
+
+## date: Spring (April-June), 2024
 
 ### PLEASE FILL OUT THE FOLLOWING SURVEY:
 https://forms.gle/XSPjJjMsUa9EWXo2A
@@ -72,17 +70,6 @@ Grade Scale:
 
 ### ATTENDANCE:
 This course is being taught through a synchronous remote modality through Zoom. Attendance is mandatory; lecture recordings will only be available to students with university approved absences or pre-approved special circumstances. If you are sick or have any other justified reason to miss a lecture, please reach out to Dr. Johnson in advance and you will be reasonably accommodated.
-
-<!--
-### SOME IMPORTANT DATES: 
-(See https://njms.rutgers.edu/sgs/current_students/events.php for more)
-
-|                    |                   |
-|:--------------------|:--------------------------|
-|February 26 (Monday): | First day of Spring 2 Block | 
-|November 23-24 (Thu-Fri):| Thanksgiving Break (no class)      | 
-|April 26 (Friday): | Last day of Spring 2 Block  | 
--->
 
 ### WORKLOAD:
 This is an 8-week, 2.0 credit class near the end of Spring 2024. In general, you should expect four hours of in class each week, and two hours outside of class for every hour in class.
