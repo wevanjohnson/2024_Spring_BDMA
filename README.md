@@ -1,6 +1,6 @@
-# "High Throughput Biomedical Data Analysis"
+# High Throughput Biomedical Data Analysis
 
-## date: Spring (April-June), 2024
+## Spring (April-June), 2024
 
 ### PLEASE FILL OUT THE FOLLOWING SURVEY:
 https://forms.gle/XSPjJjMsUa9EWXo2A
