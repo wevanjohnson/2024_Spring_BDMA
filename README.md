@@ -48,7 +48,7 @@ Email: ajv120@njms.rutgers.edu
 ### GitHub REPOSITORY:
 The course GitHub repository is: https://github.com/wevanjohnson/2024_Spring_BDMA. This page will contain all information in this syllabus plus more. Homework assignments and other information pertinent to this course will be posted on this web site, which will be updated frequently, so you should visit it regularly.
 
-### Canvas:
+### CANVAS:
 There will also be a Canvas course page for this course. This is where you will be able to access links to past lectures, and also turn in your homework (and track your HW grades). The rest of the course materials will only be posted on GitHub.
 
 ### COURSE TEXTBOOKS:
