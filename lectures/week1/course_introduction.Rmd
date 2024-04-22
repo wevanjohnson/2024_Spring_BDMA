@@ -59,7 +59,6 @@ Go to [https://www.redrockdatascience.com](https://www.redrockdatascience.com)
 * Lots of diverse material
     + Not a spectator sport!
 
- 
 # Installation Details
 
 ## Important installations
