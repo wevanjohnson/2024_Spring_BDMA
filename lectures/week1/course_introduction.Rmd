@@ -23,8 +23,6 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 img_path <- "figs/"
 ```
 
-# Course Details
-
 ## 
 \begin{center}
 {\Huge\bf Introductions!}
@@ -59,69 +57,6 @@ Go to [https://www.redrockdatascience.com](https://www.redrockdatascience.com)
 * Lots of diverse material
     + Not a spectator sport!
 * Learning to program in R is a requirement of this course. 
-
-# Learning R
-
-## R Tutorials (YouTube)
-Dr. Johnson will provide an online R tutorial on GitHub: [https://github.com/wevanjohnson/2024_04_R_tutorial](https://github.com/wevanjohnson/2024_04_R_tutorial)
-
-Please complete Lectures 1-6 ASAP (required). In addition, plan to complete Lectures 7-12 by at least the end of the course.  
-
-\tiny
-| Day         | Topics                                |
-| :-----------| :------------------------------------ |
-| Lecture 1   | Installing R, RStudio, and R packages |
-| Lecture 2   | Introduction to R/RStudio             |
-| Lecture 3   | R basics, Part 1                      |
-| Lecture 4   | R basics, Part 2                      |
-| Lecture 5   | R basics, Part 3                      |
-| Lecture 6   | Programming Basics                    |
-| Lecture 7   | R Markdown                            |
-| Lecture 8   | Input/output data, Data structures    |
-| Lecture 9   | The tidyverse                         |
-| Lecture 10  | Visualization with ggplot2, Part 1    |
-| Lecture 11  | Visualization with ggplot2, Part 2    |
-| Lecture 12  | Visualization with ggplot2, Part 3    |
-| Lecture 13  | Creating R Packages                   |
-| Lecture 14  | Shiny Programing, Part 1              |
-| Lecture 15  | Shiny Programing, Part 2              |
-
-
-# Installation Details
-
-## Important installations
-You will need to install the following: \vskip .1in
-
-**Mac Users**
-
-* R and R Studio
-* Know how to access a terminal (Rstudio or Terminal)
-* git (type `git --version` in the terminal)
-
-\vskip .1in
-	
-**Windows Users:**
-
-* R and R Studio
-* A terminal app (Git Bash, MobaXterm, Putty)
-* Git for Windows
-
-## R and Rstudio
-
-See instructions at: https://rafalab.github.io/dsbook/installing-r-rstudio.html
-
-## Accessing the terminal and installing Git
-
-See instructions at: https://rafalab.github.io/dsbook/accessing-the-terminal-and-installing-git.html
-
-## For Windows: link Git Bash and RStudio
-
-We can access the terminal either through RStudio or by opening Git Bash directly. For RStudio, set Git Bash as the default Unix shell: go to preferences (under the File pull down menu), then select Terminal, then select Git Bash:
-\begin{center}
-\includegraphics[height=2.5 in]{figs/VirtualBox_Windows-7-Enterprise_23_03_2018_09_38_00.png}
-\end{center}
-
-# Introduction to BMDA 
 
 ## Analytics Hierarchy
 \begin{center}		
