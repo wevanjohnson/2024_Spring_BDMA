@@ -173,7 +173,7 @@ To solve another equation such as $3x^2 + 2x -1$, we can copy and paste the code
 ```{r, eval=FALSE}
 a <- 3
 b <- 2
-c <- -1
+c <- -5
 (-b + sqrt(b^2 - 4*a*c)) / (2*a)
 (-b - sqrt(b^2 - 4*a*c)) / (2*a)
 ```
@@ -251,6 +251,7 @@ Sometimes it is useful to name the entries of a vector. For example, when defini
 codes <- c("italy" = 380, "canada" = 124, "egypt" = 818)
 codes
 ```
+
 
 ## Subsetting elements
 
