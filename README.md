@@ -46,7 +46,7 @@ Email: ajv120@njms.rutgers.edu
 **Teaching Assistant:** There is not TA for this course. However, Dr. VanValkenburg will be available for in-person help and support by appointment on a limited basis.  
 
 ### GitHub REPOSITORY:
-The course GitHub repository is: https://github.com/wevanjohnson/2024_BMDA. This page will contain all information in this syllabus plus more. Homework assignments and other information pertinent to this course will be posted on this web site, which will be updated frequently, so you should visit it regularly.
+The course GitHub repository is: https://github.com/wevanjohnson/2024_Spring_BDMA. This page will contain all information in this syllabus plus more. Homework assignments and other information pertinent to this course will be posted on this web site, which will be updated frequently, so you should visit it regularly.
 
 ### COURSE TEXTBOOKS:
 We will use multiple text resources in this class. None are required, all are freely available online or can be purchased in hard-copy. Many of my materials are adapted from these resources (thanks to the authors for these):
