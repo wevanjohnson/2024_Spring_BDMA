@@ -129,11 +129,11 @@ Single cell and epigenetic data analysis (Week 7)
 Microbiome data analysis (Week 8)
 
 * 6/10/24:    Diversity analysis; Dimension reduction
-* 6/12/24:    Differential abundance; Co-occurrence and functional analyses
+* 6/12/24:    Differential abundance; Co-occurrence and functional analyses; Final Projects Due
 
 Imaging and spatial data analysis (????)
 
 * Types of imaging data; Tools for image analysis
-* Pattern recognition and machine learning; Final Projects Due
+* Pattern recognition and machine learning
 
 
