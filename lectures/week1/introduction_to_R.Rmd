@@ -90,29 +90,18 @@ Once on the CRAN page, select the version for your operating system: Linux, Mac 
 
 ## Installing RStudio (Windows and Mac)
 
-You can start by searching for RStudio on your browser:
+To install RStudio, start by searching for "RStudio" on your browser:
 
-![](figs/VirtualBox_Windows-7-Enterprise_22_03_2018_16_18_41.png)
+![](figs/rstudio_install_1.png)
 
-## Installing RStudio (Windows and Mac)
-You should find the RStudio website as shown above. Once there, click on _Download RStudio_.
-
-![](figs/VirtualBox_Windows-7-Enterprise_22_03_2018_16_18_52.png)
-
-## Installing RStudio (Windows and Mac)
-This will give you several options. For what we do in this tutorial, it is more than enough to use the free Desktop version:
-
-![](figs/VirtualBox_Windows-7-Enterprise_22_03_2018_16_18_58.png)
-
-## Installing RStudio (Windows and Mac)
-Once you select this option, it will take you to a page in which the operating system options are provided. Click the link showing your operating system.
-
-![](figs/VirtualBox_Windows-7-Enterprise_22_03_2018_16_19_04.png)
-
+## Installing RStudio (Mac)
+You should find the Posit/RStudio website as shown above. Once there, click on "Download RStudio Desktop for Mac OS 12+" below the _2: Install RStudio_ header. 
+\center
+![](figs/rstudio_install_2.png){ width=85% }
 
 ## More on R and Rstudio
 
-See more detailed instructions at: https://rafalab.github.io/dsbook/installing-r-rstudio.html
+See more detailed instructions at in Lecture 1 at: [https://github.com/wevanjohnson/2024_04_R_tutorial](https://github.com/wevanjohnson/2024_04_R_tutorial)
 
 ## Accessing the terminal and installing Git
 
@@ -226,6 +215,7 @@ install.packages(c("tidyverse", "dslabs"))
 ##  Vectors 
 
 In R, the most basic objects available to store data are __vectors__. As we have seen, complex datasets can usually be broken down into components that are vectors. For example, in a data frame, each column is a vector. Here we learn more about this important class.
+
 ## Creating Vectors
 
 We can create vectors using the function `c`, which stands for __concatenate__. We use `c` to concatenate entries in the following way:
