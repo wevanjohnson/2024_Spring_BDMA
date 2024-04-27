@@ -20,7 +20,7 @@ tables: true
 
 ## Git and GitHub Introduction
 
-Here we provide some details on Git and GitHub, but we are only scratching the surface. Here are some resources to help you further:
+Here we will provide some details on Git and GitHub, but we are only scratching the surface. Here are some resources to help you further:
 
 * Codeacademy: https://www.codecademy.com/learn/learn-git
 * GitHub Guides: https://guides.github.com/activities/hello-world/
@@ -31,17 +31,17 @@ Here we provide some details on Git and GitHub, but we are only scratching the s
 
 There are three main reasons to use Git and GitHub.
 
-* \underline{Sharing:} GitHub allows us to easily share code with or without the advanced version control functionality.
-* \underline{Collaborating:} Multiple people make changes to code and keep versions synched. GitHub also has a special utility, called a **pull request**, that can be used by anybody to suggest changes to your code. 
-* \underline{Version control:} The version control capabilities of Git permit us to keep track of changes, revert back to previous versions, and create **branches** in to test out ideas, then decide if we **merge** with the original.
+* \underline{Sharing:} GitHub allows us to easily share code!
+* \underline{Collaborating:} Multiple people make changes to code and keep versions synched. GitHub has a special utility, called a **pull request**, that can be used by anybody to suggest changes to your code. 
+* \underline{Version control:} Using `git` permits us to keep track of changes, revert back to previous versions, and create **branches** in to test out ideas, then decide if we **merge** with the original.
 
 # GitHub Repositories
 
 ## GitHub accounts
 
-After installing git, the first step is to get a GitHub account. To do this, go to https://github.com/ where you will see a link to sign up in the top right corner. \vskip .2in
+After installing git, go get a GitHub account. Go to [https://github.com/](https://github.com/). You will see a link to sign up in the top right corner. \vskip .2in
 
-Pick a name carefully! Choose something short, somehow related to your name, and professional. Remember that you will use this to share code with others and you might be sharing this with potential collaborators or future employers!
+Pick a name carefully! Something short, related to your name, and professional. Remember that you will use this to share code with others. You might be sharing this with potential collaborators or future employers!
 
 ## GitHub repositories
 
@@ -51,7 +51,7 @@ The GitHub copy is usually considered the **main** copy (previously called the *
 
 ## GitHub repositories
 
-The first step is to initialize the repository on GitHub. You will have a page on GitHub with the URL: http://github.com/username.On your account, you can click on _Repositories_ and then click on _New_ to create a new repo:
+The first step is to initialize the repository on GitHub. You will have a page on GitHub with the URL: [http://github.com/username](http://github.com/username). On your account, you can click on `Repositories` and then click on `New` to create a new repo:
 
 \begin{center}
 \includegraphics[height=1.75in]{figs/git/VirtualBox_Windows-7-Enterprise_23_03_2018_14_23_39.png}
@@ -59,24 +59,24 @@ The first step is to initialize the repository on GitHub. You will have a page o
 \end{center}
 
 ## GitHub repositories
-Choose a good descriptive name, for this example make a repo named "DataScienceLectures". The next step will be to **clone** it on your computer using the terminal. Copy the link to connect to this repo for the next step.
+Choose a good descriptive name, for this example make a repo named "BMDALectures". The next step will be to **clone** it on your computer using the terminal. Copy the link to connect to this repo for the next step.
 \begin{center}
 \includegraphics[height=1.75in]{figs/git/VirtualBox_Windows-7-Enterprise_23_03_2018_14_23_42.png}
 \includegraphics[height=1.75in]{figs/git/VirtualBox_Windows-7-Enterprise_23_03_2018_14_24_19.png}
 \end{center}
 
 ## GitHub repositories
-GitHub also allows you to **fork** others' repos. Go to https://github.com/wevanjohnson/my.package
+GitHub also allows you to **fork** others' repos. Go to [https://github.com/wevanjohnson/my.package](https://github.com/wevanjohnson/my.package)
 \begin{center}
 \includegraphics[height=1.75in]{figs/git/fork1.png}
 \includegraphics[height=1.75in]{figs/git/fork2.png}
 \end{center}
-Click _Fork_ in the top right and this will create a fork of the repository in your GitHub account.  
+Click `fork` in the top right and this will create a fork of the repository in your GitHub account.  
 
 # Git Basics
 
 ## Git Setup
-A first step is to let Git know who we are. This will make it easier to connect with GitHub. In a terminal window use the `git config` command:
+First let `git` know who you are--will make it easier to connect with GitHub. In a terminal window use the `git config` command:
 
 ```{bash, eval=F}
 git config --global user.name "My Name"
@@ -84,16 +84,16 @@ git config --global user.mail "my@email.com"
 ```
 
 ## Git Setup
-The main actions in Git are to:
+The main actions in git are to:
 
 1. **pull** changes from the remote GitHub repo
-2. **add** files, or as we say in the Git lingo: **stage** files
+2. **add** files, or as we say in the `git` lingo: **stage** files
 3. **commit** changes to the local repo
 4. **push** changes to the **remote** GitHub repo
 
 
 ## Git Setup
-To effectively permit version control and collaboration in Git, files move across four different areas: 
+To effectively permit version control and collaboration in `git`, files move across four different areas: 
 
 \begin{center}
 \includegraphics[width=4.5in]{figs/git/git-layout.png}
@@ -104,7 +104,7 @@ But how does it all get started? We can clone an existing repo or initialize one
 ## Cloning Git repositories
 We will **clone** your existing my.package **upstream repository** to your local computer. \vskip .2in
 
-What does clone mean? We are going to actually copy the entire Git structure, files and directories to all stages: working directory, staging area, and local repository. 
+What does clone mean? We are going to actually copy the entire `git` structure, files and directories to all stages: working directory, staging area, and local repository. 
 
 \begin{center}
 \includegraphics[width=4.5in]{figs/git/git-clone.png}
@@ -126,7 +126,7 @@ ls
 
 ## Cloning Git repositories
 
-Note: the **working directory** is the same as your Unix working directory. When you edit files (e.g., RStudio), you change the files in this directory. Git can tell you how these files relate to the upstream directory: 
+Note: the **working directory** is the same as your Unix working directory. When you edit files (e.g., RStudio), you change the files in this directory. `git` can tell you how these files relate to the upstream directory: 
 
 ```{bash, eval=F}
 git status
@@ -200,7 +200,7 @@ git merge
 
 ## Working with Git repositories
 
-However, we often just want to change both with one command. For this, we use:
+Often we want to change both with one command. For this, we use:
 
 ```{bash, eval=F}
 git pull
@@ -247,7 +247,7 @@ git push -u origin main
  
 ## Pull requests (needed for your Homework)
 
-**Pull requests** enable sharing of changes from other branches/forks of a repo. Potential changes can be reviewed before they are merged into the base branch.
+**Pull requests** enable sharing of changes from other branches/forks of a repo. Potential changes can be reviewed before merged into the main branch.
 \begin{center}
 \includegraphics[width=3.75in]{figs/git/pull.png}
 \end{center}
