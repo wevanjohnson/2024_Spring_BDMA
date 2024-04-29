@@ -205,7 +205,7 @@ If you are off campus, you will need access to VPN:
 ## Accessing R through the terminal
 You first need to attach R to your session (using Amarel Desktop):
 
-```{bash}
+```{bash, eval=F}
 [wj183@hal0005 ~]$ module load R
 [wj183@amarel1 ~]$ R
 ```
