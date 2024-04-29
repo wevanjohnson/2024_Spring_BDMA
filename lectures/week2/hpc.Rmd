@@ -183,6 +183,33 @@ If you are off campus, you will need access to VPN:
 
 ![](figs/hpc/ondemand_terminal_2.png)
 
+## Accessing the Amarel Desktop through OnDemand
+![](figs/hpc/ondemand_desktop_1.png)
+
+## Accessing the Amarel Desktop through OnDemand
+![](figs/hpc/ondemand_desktop_2.png)
+
+## Accessing the Amarel Desktop through OnDemand
+![](figs/hpc/ondemand_desktop_3.png)
+
+
+## Accessing the Amarel Desktop through OnDemand
+![](figs/hpc/ondemand_desktop_4.png)
+
+## Accessing the Amarel Desktop through OnDemand
+![](figs/hpc/ondemand_desktop_5.png)
+
+## Accessing the Amarel Desktop through OnDemand
+![](figs/hpc/ondemand_desktop_6.png)
+
+## Accessing R through the terminal
+You first need to attach R to your session (using Amarel Desktop):
+
+```{bash}
+[wj183@hal0005 ~]$ module load R
+[wj183@amarel1 ~]$ R
+```
+
 ## Accessing the RStudio through OnDemand
 ![](figs/hpc/ondemand_rstudio_1.png)
 
