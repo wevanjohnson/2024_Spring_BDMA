@@ -43,7 +43,6 @@ Most Unix implementations include a large number of powerful tools and utilities
 	\end{enumerate}
 	You can also us pipes in R! Investigate how to do this and give the code for a great example. 
 	\item Learn about another Unix command that we have not discussed. Give a short description of this function, when you would use it, its syntax, and give some examples of its use.
-	\item {\bf Wait to to complete the following two tasks for the Git and GitHub lecture:} 
 \end{enumerate}
 
 \subsection*{GitHub}
