@@ -9,7 +9,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ### COURSE DESCRIPTION:
-
 This class is a an introduction to methods and tools for biomedical data analysis. The course will introduce basic and intermediate bioinformatics and statistical analyses for high-throughput biology, including sequencing data preprocessing and quality control, genome-wide association studies, gene expression and proteomics, epigenetics, metagenomics, and imaging data analysis. We will describe relevant methods and procedures for each context, and practice and apply code in each case. Examples will come from a variety of applications from molecular biology and biomedical research. Students be expected to use R and GitHub throughout this course.
 
 ### COURSE OBJECTIVES:
@@ -51,7 +50,6 @@ Email: ajv120@njms.rutgers.edu
 The course GitHub repository is: https://github.com/wevanjohnson/2024_Spring_BDMA. This page will contain all information in this syllabus plus more. Homework assignments and other information pertinent to this course will be posted on this web site, which will be updated frequently, so you should visit it regularly.
 
 ### CANVAS:
-
 There will also be a Canvas course page for this course. This is where you will be able to access links to past lectures, and also turn in your homework (and track your HW grades). The rest of the course materials will only be posted on GitHub.
 
 ### COURSE TEXTBOOKS:
