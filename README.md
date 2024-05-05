@@ -8,7 +8,7 @@ https://forms.gle/XSPjJjMsUa9EWXo2A
 
 ### COURSE DESCRIPTION:
 
-This class is a an introduction to methods and tools for biomedical data analysis. The course will introduce basic and intermediate bioinformatics and statistical analyses for high-throughput biology, including sequencing data preprocessing and quality control, genome-wide association studies, gene expression and proteomics, epigenetics, metagenomics, and imaging data analysis. We will describe relevant methods and procedures for each context, and practice and apply code in each case. Examples will come from a variety of applications from molecular biology and biomedical research. Students be expected to use R and GitHub throughout this course.
+This class is an introduction to methods and tools for biomedical data analysis. The course will introduce basic and intermediate bioinformatics and statistical analyses for high-throughput biology, including sequencing data preprocessing and quality control, genome-wide association studies, gene expression and proteomics, epigenetics, metagenomics, and imaging data analysis. We will describe relevant methods and procedures for each context, and practice and apply code in each case. Examples will come from a variety of applications from molecular biology and biomedical research. Students be expected to use R and GitHub throughout this course.
 
 ### COURSE OBJECTIVES:
 Students who take this course will: 
@@ -19,7 +19,7 @@ Students who take this course will:
 4. Practice principles and concepts of data sharing, reproducibility, and open science
 
 ### PREREQUISITES
-A working knowledge and experience with R is required. We recommend that students complete MBGC 5002Q and prior to registering for this course, or have equivalent experience. An introductory course in statistics, biostatistics, or equivalent experience in statistical analysis is also recommended (e.g., GSND 5135Q or  MSBS N5030). Students without sufficient coding or statistics experience will need to obtain these skills before the course. Please contact Dr. Johnson to obtain a list of the required proficiencies and asynchronous resources available to obtain the needed programming or statistics skills.
+A working knowledge and experience with R is required. We recommend that students complete MBGC 5002Q prior to registering for this course, or have equivalent experience. An introductory course in statistics, biostatistics, or equivalent experience in statistical analysis is also recommended (e.g., GSND 5135Q or  MSBS N5030). Students without sufficient coding or statistics experience will need to obtain these skills before the course. Please contact Dr. Johnson to obtain a list of the required proficiencies and asynchronous resources available to obtain the needed programming or statistics skills.
 
 ### COURSE FORMAT:
 This class will be taught virtually using a synchronous remote modality, although students will be provided a classroom to gather for each lecture. A co-instructor will be present in the classroom for each lecture. Class will occur Mondays and Wednesdays from 10:00am-11:50am. Courses may also be recorded and made available for students who need to miss classes due to personal reasons, illness, or research related needs.
@@ -75,13 +75,13 @@ Grade Scale:
 This course is being taught through a synchronous remote modality through Zoom. Attendance is mandatory; lecture recordings will only be available to students with university approved absences or pre-approved special circumstances. If you are sick or have any other justified reason to miss a lecture, please reach out to Dr. Johnson in advance and you will be reasonably accommodated.
 
 ### WORKLOAD:
-This is an 8-week, 2.0 credit class near the end of Spring 2024. In general, you should expect four hours of in class each week, and two hours outside of class for every hour in class.
+This is an 8-week, 2.0 credit class near the end of Spring 2024. In general, you should expect four hours in class each week, and two hours outside of class for every hour in class.
 
 ### OTHER HELP: 
-I **strongly** encourage you to contact early me if you have difficulty with the material. This course builds on material from prior lectures, so do not fall behind! My job is to help you understand the material as well as possible, and I am flexible with meeting times.
+I **strongly** encourage you to contact me  early if you have difficulty with the material. This course builds on material from prior lectures, so do not fall behind! My job is to help you understand the material as well as possible, and I am flexible with meeting times.
 
 ### ACADEMIC INTEGRITY: 
-You are expected to have read and follow the guidelines at the university’s academic integrity website (http://academicintegrity.rutgers.edu ). These principles forbid plagiarism and require that every Rutgers University student to:
+You are expected to read and follow the guidelines at the university’s academic integrity website (http://academicintegrity.rutgers.edu ). These principles forbid plagiarism and require that every Rutgers University student to:
 
 * Properly acknowledge and cite all use of the ideas, results, or words of others
 * Properly acknowledge all contributors to a given piece of work
