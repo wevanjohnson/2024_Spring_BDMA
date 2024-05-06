@@ -2,15 +2,15 @@
 
 ## Spring (April-June), 2024
 
-### PLEASE FILL OUT THE FOLLOWING SURVEY:
+## PLEASE FILL OUT THE FOLLOWING SURVEY:
 https://forms.gle/XSPjJjMsUa9EWXo2A
 
 
-### COURSE DESCRIPTION:
+## COURSE DESCRIPTION:
 
-This class is a an introduction to methods and tools for biomedical data analysis. The course will introduce basic and intermediate bioinformatics and statistical analyses for high-throughput biology, including sequencing data preprocessing and quality control, genome-wide association studies, gene expression and proteomics, epigenetics, metagenomics, and imaging data analysis. We will describe relevant methods and procedures for each context, and practice and apply code in each case. Examples will come from a variety of applications from molecular biology and biomedical research. Students be expected to use R and GitHub throughout this course.
+This class is an introduction to methods and tools for biomedical data analysis. The course will introduce basic and intermediate bioinformatics and statistical analyses for high-throughput biology, including sequencing data preprocessing and quality control, genome-wide association studies, gene expression and proteomics, epigenetics, metagenomics, and imaging data analysis. We will describe relevant methods and procedures for each context, and practice and apply code in each case. Examples will come from a variety of applications from molecular biology and biomedical research. Students be expected to use R and GitHub throughout this course.
 
-### COURSE OBJECTIVES:
+## COURSE OBJECTIVES:
 Students who take this course will: 
 
 1. Become familiar with bioinformatics workflows for several biomedical data types 
@@ -18,18 +18,18 @@ Students who take this course will:
 3. Gain advanced experience in writing code and using existing bioinformatics tools
 4. Practice principles and concepts of data sharing, reproducibility, and open science
 
-### PREREQUISITES
+## PREREQUISITES
 A working knowledge and experience with R is required. We recommend that students complete MBGC 5002Q and prior to registering for this course, or have equivalent experience. An introductory course in statistics, biostatistics, or equivalent experience in statistical analysis is also recommended (e.g., GSND 5135Q or  MSBS N5030). Students without sufficient coding or statistics experience will need to obtain these skills before the course. Please contact Dr. Johnson to obtain a list of the required proficiencies and asynchronous resources available to obtain the needed programming or statistics skills.
 
-### COURSE FORMAT:
-This class will be taught virtually using a synchronous remote modality, although students will be provided a classroom to gather for each lecture. A co-instructor will be present in the classroom for each lecture. Class will occur Mondays and Wednesdays from 10:00am-11:50am. Courses may also be recorded and made available for students who need to miss classes due to personal reasons, illness, or research related needs.
+## COURSE FORMAT:
+This class will be taught virtually using a synchronous remote modality, although students will be provided a classroom to gather for each lecture. A co-instructor will be present in the classroom for each lecture. Class will occur Mondays and Wednesdays from 10:00 am-11:50am. Courses may also be recorded and made available for students who need to miss classes due to personal reasons, illness, or research related needs.
 
-### ZOOM LINK AND CLASSROOM:
+## ZOOM LINK AND CLASSROOM:
 Zoom Meeting ID for all sessions is 912 9274 4505, with the password: 961614, or use the following direct link (the link is also available though the course GitHub page): https://rutgers.zoom.us/j/91292744505?pwd=L1RCWHBkQXdZTkQ5T0g4SWpIYXJIdz09. 
 
 Room MSB B619 will also be available for the students to congregate for each lecture, with a co-instructor present. 
 
-### FACULTY AND STAFF: 
+## FACULTY AND STAFF: 
 W. Evan Johnson, Ph.D.\
 Email: w.evan.johnson@rutgers.edu\
 Cell Phone: (801) 472-6951 (call me!)
@@ -40,18 +40,18 @@ Email: samantha.l.bell@rutgers.edu
 Co-instructor Arthur VanValkenburg\
 Email: ajv120@njms.rutgers.edu
 
-### OFFICE HOURS: 
+## OFFICE HOURS: 
 **Instructor:** Dr. Johnson will be available virtually by appointment only. Email or text him any time to set up a time to meet!
 
 **Teaching Assistant:** There is not TA for this course. However, Dr. VanValkenburg will be available for in-person help and support by appointment on a limited basis.  
 
-### GitHub REPOSITORY:
+## GitHub REPOSITORY:
 The course GitHub repository is: https://github.com/wevanjohnson/2024_Spring_BDMA. This page will contain all information in this syllabus plus more. Homework assignments and other information pertinent to this course will be posted on this web site, which will be updated frequently, so you should visit it regularly.
 
-### CANVAS:
+## CANVAS:
 There will also be a Canvas course page for this course. This is where you will be able to access links to past lectures, and also turn in your homework (and track your HW grades). The rest of the course materials will only be posted on GitHub.
 
-### COURSE TEXTBOOKS:
+## COURSE TEXTBOOKS:
 We will use multiple text resources in this class. None are required, all are freely available online or can be purchased in hard-copy. Many of my materials are adapted from these resources (thanks to the authors for these):
 
 1. _Modern Data Science with R_, 2nd edition, By Benjamin S. Baumer, Daniel T. Kaplan, Nicholas J. Horton, Chapman and Hall/CRC, 2021. https://mdsr-book.github.io/mdsr2e/
@@ -60,11 +60,11 @@ We will use multiple text resources in this class. None are required, all are fr
 4. _Mathematical Foundations for Data Analysis_, By Jeff M. Phillips: https://mathfordata.github.io. 
 5. _The Elements of Statistical Learning_, 2nd Edition, by Trevor Hastie, Robert Tibshirani, and Jerome Friedman: https://hastie.su.domains/ElemStatLearn/
 
-### EVALUATION METHODS & COURSE GRADING
-#### Assessment/Evaluation:
+## EVALUATION METHODS & COURSE GRADING
+### Assessment/Evaluation:
 This course is a hands-on, project-based course. You will be graded based on homework assignments/mini projects (70\%) and your final project (30\%; there will be no final exam). Homework assignments and mini projects will be usually assigned at the beginning of each week and will be due by Wednesday of the week after the material is covered. However, please plan to be flexible on due dates based on the material covered in class.
 
-#### Course Grading:
+### Course Grading:
 Grade Scale:
 
 |$\geq$|90%|85%|80%|75%|70%|<70%
