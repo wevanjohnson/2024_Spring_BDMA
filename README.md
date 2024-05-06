@@ -32,7 +32,7 @@ Room MSB B619 will also be available for the students to congregate for each lec
 ### FACULTY AND STAFF: 
 W. Evan Johnson, Ph.D.\
 Email: w.evan.johnson@rutgers.edu\
-Cell Phone: (801) 472-6951
+Cell Phone: (801) 472-6951 (call me!)
 
 Co-instructor Samantha Bell, Ph.D.\
 Email: samantha.l.bell@rutgers.edu
