@@ -437,7 +437,7 @@ x = [2, 1, 3]
 print(x[0],"Hello Python!")
 ```
 
-Some of the available language engines include: Python, SQL, Bash, Rcpp, Stan, JavaScript, and CSS.
+Some of the available language engines include: Python, SQL, Bash, Rcpp, Stan, JavaScript, and CSS. These will also have echo=F, so they are not evaluated.
 
 
 
