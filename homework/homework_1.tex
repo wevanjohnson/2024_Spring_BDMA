@@ -1,0 +1,129 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Homework 1},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Homework 1}
+\author{W. Evan Johnson, Ph.D.\\
+Director, Center for Data Science\\
+Rutgers New Jersey Medical School}
+\date{2024-05-07}
+
+\begin{document}
+\maketitle
+
+\subsection*{R Markdown}
+
+R Markdown is a powerful tool for \textbf{literate prgramming.} Note
+that all Homework in this class will need to be completed in R Markdown
+and submitted (with both the .Rmd and .html file) in a compressed/zipped
+file format. See Question \ref{tar} below for more details on this.
+Also, please complete the following:
+
+\begin{enumerate}
+    \item To gain more practice with R Markdown, recreate the .Rmd file for the example file: "homework1\_html.html" in the homework1 tarball (see below). 
+\end{enumerate}
+
+\subsection*{Advanced Unix Tools}
+
+Most Unix implementations include a large number of powerful tools and
+utilities. (Unix has been in development for more than 50 years!). We
+were only able to scratch the surface in our class time. It will take
+time to become comfortable with Unix, but as you struggle, you will find
+yourself learning just by looking at \texttt{man} files and finding
+solutions on the internet. For this Extra Practice, you will explore
+several more advanced Unix functions. You can use any resource available
+to you--classmates, the internet, and Dr.~Johnson. Ask all the questions
+you want, just make sure you do the work and you learn!
+
+\begin{enumerate}
+    \item  Learn more about tools for downloading files from external servers (e.g., \texttt{scp}, \texttt{ftp}, \texttt{sftp}, \texttt{rsync}), and for to downloading data from webpages (e.g., \texttt{curl}, \texttt{wget}, \texttt{mget}). Use an appropriate function to download the homework1.tar.gz from the homework folder on course GitHub page. Give the code you used to download these data. 
+    \item \label{tar} Learn about the \texttt{tar} function. What is a tarball? How is it different from a .zip file? Download the homework1.tar.gz file from GitHub and unzip the contents, and report that code you used. How effective is the compression for this tarball? After you complete this homework, add your homework files directory and generate a gzipped tarball for all the Homework 1 data plus your answers. Make sure to provide the code you used to generate the tarball for your homework. 
+    \item Research the \texttt{chmod} function. Give short explanation of what this function does, its syntax, and examples when you would use it. Practice \texttt{chmod} by changing the permissions on the `TB\_microbiome\_data.txt' file in the Homework 1 directory from the previous questions. Give examples of the code you used and show that the code works (e.g., use \texttt{ls -l}). 
+    \item  The \texttt{grep} function is an extremely powerful tool for search (potentially large) files for patterns and strings. One advantage is that you don't have to open the file to conduct a search! Using the internet, find a short tutorial on the basics of \texttt{grep}, and give the code and results for the following tasks: 
+        \begin{enumerate}
+        \item How many FC receptor genes are present in the 'TB\_nanostring.txt' file? (hint: search for 'FC' in the file)
+        \item How many samples (rows) in the 'nanostring\_annotation.txt' do not have a co-morbid condition or other risk factor?(i.e., inverse search -- how many rows {\it do not} have a "Yes")
+        \item How many coronavirus genomes are present in the `viral.fasta' file? How many of these are SARS-COV-2?  
+        \item How many times does the letter `A' (capital or lowercase) appear in all the files from the homework1 tar file? (i.e., ignore case).
+        \item What {\it Staphylococcus} species are present in the `TB\_microbiome\_data.txt' file? (hint: each separate microbe has its own row in the file). Print out the counts for {\it Mycobacterium tuberculosis}. How many {\it Streptococcus} species are present? 
+        \end{enumerate}
+    \item Learn how to use \texttt{less} to display large text files in the terminal using the \texttt{man} help page. Using the ``OPTIONS" section of the \texttt{man} page, open the `virus.fa' file to display so that it does not wrap long lines (default), displays line numbers, and opens at the first occurrence of `coronavirus'. Provide the command you used to open the file in this way. Within \texttt{less}, learn and practice how to scroll forward/backward, scroll forward/backward $n$ lines, jump to the middle or end of the file, and search for text in the document. When would it be advantageous to use \texttt{less} over a tool like Microsoft Word? Ask Dr. Johnson why in Unix \texttt{more} is less and \texttt{less} is more :-). 
+    \item Open a text file in \texttt{vim} and change the file. How do you How do you move the the beginning/end of a line, insert text, copy and paste, delete text and lines? How do you save your file or exit \texttt{vim} with/without saving your result? What are the advantages and disadvantages of \texttt{vim} versus \texttt{less}? In which scenarios would you use each of these? 
+    \item Learn about \texttt{pipes} and \texttt{redirects} in Unix. In which scenarios would you use them, and why are they helpful? describe what the following commands do: 
+    \begin{enumerate}
+        \item \texttt{ls -l | less}
+        \item \texttt{ls -l > directory\_contents.txt}
+        \item \texttt{ls -l >> directory\_contents.txt}
+        \item \texttt{cat directory\_contents.txt | head -3 | tail -2}
+        \item \texttt{ls | grep -c html}
+        \item \texttt{ls | wc -l}
+        \item \texttt{cat file1.txt file2.txt > file3.txt}
+    \end{enumerate}
+    You can also us pipes in R! Investigate how to do this and give the code for a great example. 
+    \item Learn about another Unix command that we have not discussed. Give a short description of this function, when you would use it, its syntax, and give some examples of its use.
+\end{enumerate}
+
+\subsection*{GitHub}
+    \begin{enumerate}
+        \item Fork the \href{https://github.com/wevanjohnson/my.package}{https://github.com/wevanjohnson/my.package} directory and clone it to your local machine. Then add your name as an author in the DESCRIPTION file local repository and add a multiplication function to the R package (R folder). Then push the changes to your GitHub fork, and send me a pull request with your changes.  
+        \item Clone the \href{https://github.com/wevanjohnson/2024\_Spring\_BDMA}{https://github.com/wevanjohnson/2024\_Spring\_BDMA} repository on your computer. Find something that could be improved (typo? explain somthing better), add files/changes to it, and upload it to GitHub. Send another well-annotated pull request to Dr. Johnson. 
+    \end{enumerate}
+
+\end{document}
