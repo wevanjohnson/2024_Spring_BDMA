@@ -178,10 +178,18 @@ git push
 
 Due to Two Factor Authentication (2FA), now it is required to create a token in your account github settings and used it as a password when you run **git push**. It is noteworthy that you need to set up permissions for token to do certain actions with git repo.
 
-If you do a lot of commits and do not want to enter token each time, you can run next command: 
+
+## Working with Git repositories
+
+There are two major commands that you can use to undo **git add** or remove added files in Git (remove staged files from the staging area). 
+
+**git reset** is used to unstage changes that have been added to the staging area. This means it will remove the files from the staging area but keep the changes in your working directory. 
 ```{bash, eval=F}
-git remote set-url origin \ 
-  https://<token>@github.com/<username>/<repo>
+git reset <file>
+```
+**git rm** is used to remove a file from the staging area and the working directory. This means that it will permanently delete the file from your repository.
+```{bash, eval=F}
+git rm <file>
 ```
 
 
