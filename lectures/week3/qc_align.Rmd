@@ -220,15 +220,13 @@ Illumina sequencers have given output in many different formats:
 ## Illumina .INT and .PRB
 ![](figs/qc/int_file.png){width=150%}
 
-\vskip .2in
 ![](figs/qc/prb_file.png){width=150%}
 
 ## .fasta or .fa
 ![](figs/qc/fasta_example.png)
 
 ## .fastq or .fq (or .fq.gz)
-![](figs/qc/illum_fastq2.png){width=125%}
-\vskip .1in
+
 ![](figs/qc/illum_fastq1.png){width=125%}
 
 ## .FASTQ Paired End
@@ -273,7 +271,6 @@ Need to preprocess the reads:
 - Remove duplicate reads, trim  low complexity/quality bases/reads (Prinseq)
 - Complete pipelines: NCBI Toolkit, QC-Chain, PathoQC (pathoscope.sourceforge.net), others
 
-\vskip .2in
 **Note:** Not comprehensive or updated! 
 
 ## Read Quality Checks
@@ -286,24 +283,51 @@ Need to preprocess the reads:
 
 ## FASTQC
 \center
+![](figs/qc/fastqc0.png){height=85%}
+
+## FASTQC
+\center
 ![](figs/qc/fastqc.png){height=90%}
 
 
-
-
-
-
 ## FastQC Example
-Running FastQC from command-line: 
-
+Interactive GUI from Amarel Desktop:
 ```{bash, eval=F}	
-fastqc myfastqfile.fq --outdir=output/
-```
-
-Interactive GUI:
-```{bash, eval=F}	
+module spider fastqc
+#module avail fastqc
+module load FastQC
 fastqc
 ```
+
+Running FastQC from command-line (single file): 
+```{bash, eval=F}	
+fastqc myfastqfile.fq.gz --outdir=output/
+```
+
+Running FastQC from command-line (multiple files): 
+```{bash, eval=F}	
+fastqc *.fq.gz --outdir=output/
+```
+
+## MultiQC Example
+You can use [`multiqc`](https://multiqc.info) to combine FastQC results.
+
+```{bash, eval=F}
+pip install multiqc
+cd my_fastqc_dir
+multiqc .
+```
+
+<!--
+## MultiQC Example
+\center
+![](figs/qc/multiqc1.png){height=75%}
+-->
+
+## MultiQC Example
+
+\center
+![](figs/qc/multiqc2.png){height=85%}
 
 
 # Mapping Reads
@@ -320,30 +344,45 @@ Obstacles:
 - Massive data size
 - Repeat regions, rare variants
 	
-\vskip .2in
 **Goal:** Develop an approach to put the puzzle together! 
 
-<!--
-%\frame{
-%\frametitle{Mapping Algorithms}
-%	\begin{itemize}
-%		\item BLAST
-%		\item BLAT
-%		\item SOAP2
-%		\item Bowtie2
-%		\item BWA
-%		\item STAR
-%		\item Subread (Rsubread)
-%		\item GNUMAP
-%		\item NovoAlign
-%		\item Many others!!
-%	\end{itemize}
-%}
--->
+## Mapping Algorithms
+Here are a few examples of alignment algorithms (not comprehensive -- some of Dr. Johnson's favorites!)
+
+- BLAST
+- BLAT
+- SOAP2
+- Bowtie2
+- BWA
+- STAR
+- Subread (Rsubread)
+- GNUMAP
+- NovoAlign
+- Many others!!
 
 ## Basic Local Alignment Search Tool (BLAST)
-BLAST seed extension:
-![](figs/qc/Neighbor_HSP.jpg)
+BLAST is a "heuristic" method that identifies and combined _High-scoring Segment Pairs (HSPs)_ between two sequences. BLAST searches for high scoring sequence alignments between the query sequence and the existing sequences in the database using an approach that approximates the Smith-Waterman algorithm (described later). 
+
+\center ![](figs/qc/Neighbor_HSP.jpg){width=65%}
+
+## Basic Local Alignment Search Tool (BLAST)
+BLAST can be found at: [https://blast.ncbi.nlm.nih.gov/Blast.cgiBLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Try "BLASTING" the following sequences: 
+
+\scriptsize
+`>NC_045512.2 Severe acute respiratory syndrome coronavirus 2 isolate Wuhan-Hu-1`
+`ATTAAAGGTTTATACCTTCCCAGGTAACAAACCAACCAACTTTCGATCTCTTGTAGATCTGTTCTCTAAACGAACTTTAA`
+
+`>NC_001802.1 Human immunodeficiency virus 1`
+`GGTCTCTCTGGTTAGACCAGATCTGAGCCTGGGAGCTCTCTGGCTAACTAGGGAACCCACTGCTTAAGCCTCAATAAAGC`
+
+`>NR_102810.2 Mycobacterium tuberculosis H37Rv 16S ribosomal RNA`
+`TGTTTGGAGAGTTTGATCCTGGCTCAGGACGAACGCTGGCGGCGTGCTTAACACATGCAAGTCGAACGGA`
+`AAGGTCTCTTCGGAGATACTCGAGTGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGG`
+
+`>NR_041248.1 Bacillus anthracis strain ATCC 14578 16S ribosomal RNA`
+`AGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGG`
+
+
 
 ## Creating a Hash Index Table
 ![](figs/qc/hash1.png)
@@ -389,7 +428,7 @@ BLAST seed extension:
 
 ## Prefix Trees
 \center
-![](figs/qc/trie.png)
+![](figs/qc/trie.png){height = 80%}
 
 
 ## Prefix Trees
@@ -405,55 +444,103 @@ BLAST seed extension:
 \center
 ![](figs/qc/bowtie.pdf)
 
-## Hybrid Methods (BWA-SW and MEM, Bowtie2)
-\center
-![](figs/qc/bowtie2flow.jpg)
 
-#Hybrid Methods (BWA-SW, Bowtie2)
+## Hybrid Methods (BWA-SW, Bowtie2)
 \center
-![](figs/qc/bowtie2flow.jpg){height=80%}
+![](figs/qc/bowtie2flow.jpg){height=70%}
 
+## Read alignments are stored in SAM/BAM/CRAM
+
+\Large
+- BAM and CRAM are compressed SAM files
+- One line per alignment
+- Use `samtools` to view, sort, merge, concatenate, index, get statistics, etc, on alignment files.
+
+## SAM/BAM/CRAM Format -- Header
+
+\Large
+The _header_ lines start with @:
+
+- @HD = header definition
+- @SQ = a sequence in the reference file you used, followed by how long it was and it’s comment (from the reference file)
+- @RG = read groups you assigned while mapping the reads
+- @PG = programs used to obtain this bam, in order
+
+
+## SAM/BAM/CRAM Format -- Body
+\Large
+Each alignment has 11 mandatory fields:
+
+\center
+![](figs/qc/samformat.png)
+
+## SAM/BAM/CRAM Format -- Flag
+![](figs/qc/sam_flag.png)
+
+## SAM/BAM/CRAM Format -- Example
+![](figs/qc/sam_example.png)
+
+## SAM/BAM/CRAM Format 
+\Large
+
+- Use `samtools` view to see the content of a SAM/BAM/CRAM file.
+- Always sort and index them
+- Use `samtools view -f` (include) and `-F` (exclude) to filter by flags
+- Use `samtools view -q` to filter by quality. 
+- More on `samtools` later!!
+
+
+
+
+## BWA Example (OnDemand Amarel Desktop)
+
+```{bash, eval=F}
+# load bwa
+module load bwa
+
+# Index the genome:
+bwa index genomefile.fa 
+
+# Align the reads$^*$:
+bwa mem genomefile.fa myfastqfile.fq > bwaalign.sam
+```
 
 <!--
-\begin{frame}[fragile]
-	\frametitle{BWA Example}
-	\begin{enumerate}
-	\item Index the genome:
-	\begin{verbatim}
-	bwa index genomefile.fa 
-	\end{verbatim}
-	\item Align the reads$^*$:
-	\begin{verbatim}
-	bwa mem genomefile.fa myfastqfile.fq > bwaalign.sam
-	\end{verbatim}
-	\end{enumerate}
+# Note: the bwa mem should include a `read group' header as well, e.g.: 
+-r @RG\tID:group1\tSM:sample1\tPL:illumina\tLB:lib1\tPU:unit1 
+-->
 	
-	\vskip .2in
-	$^*$Note: the bwa mem should include a `read group' header as well, e.g.: 
-	\small
-	\begin{verbatim}
-	-r @RG\tID:group1\tSM:sample1\tPL:illumina\tLB:lib1\tPU:unit1 
-	\end{verbatim}
+## Bowtie2 Example (OnDemand Amarel Desktop)
 
-\end{frame}
-	
-	
-	\begin{frame}[fragile]
-	\frametitle{Bowtie2 Example}
-	\begin{enumerate}
-	\item Index the genome:
-	\begin{verbatim}
-	bowtie2-build genomefile.fa output/genomefile	
-	\end{verbatim}
-	\item Align the reads:
-	\begin{verbatim}
-	bowtie2 -x output/genomefile -U myfastqfile.fq \
+```{bash, eval=F}
+# Load Bowtie2
+module load bowtie2
+
+# Index the genome:
+bowtie2-build genomefile.fa output/genomefile	
+
+# Align the reads:
+bowtie2 -x output/genomefile -U myfastqfile.fq \
 	-S bowtiealign.sam
-	\end{verbatim}
-	\end{enumerate}
-\end{frame}
--->	
+```
 
+## RSubread Example (OnDemand RStudio)
+
+```{r, eval=F}
+# Install the Bioconductor installer
+install.packages("BiocManager")
+
+# Install Rsubread 
+BiocManager::install("Rsubread")
+
+# Index the genome:
+buildindex("genomefile", "genomefile.fa")
+
+# Align the reads:
+align("genomefile", "myfastqfile.fq", 
+      output_file="myfastq.bam", nthreads = 4)
+
+```
 
 
 # Visualization of Aligned Sequencing Data
@@ -474,78 +561,83 @@ BLAST seed extension:
 \center
 ![](figs/qc/igv_example.png){height=85%}
 
-## SAM Format
-\center
-![](figs/qc/samformat.png)
 
 ## SAMtools
 \center
 ![](figs/qc/samtools.png)
+
+## SAMtools Example (Amarel Desktop)
+
+```{bash, eval=F}	
+# Load SAMtools
+module load samtools
+
+# Convert SAM file to BAM format:
+samtools view -bS myalignments.sam > myalignments.bam 
+
+# Sort the BAM file:
+samtools sort myalignments.bam -o myalignments.sorted.bam
+
+# Index the BAM file:
+samtools index myalignments.sorted.bam 
+
+# View BAM file in SAMtools:
+samtools tview myalignments.sorted.bam genomefile.fa
+```
+
 <!--
-\begin{frame}[fragile]
-	\frametitle{SAMtools Example}
-	\begin{enumerate}
-	\item Index the genome:
-	\begin{verbatim}
-	samtools faidx genomefile.fa
-	\end{verbatim}
-	\item Convert SAM file to BAM format:
-	\begin{verbatim}
-	samtools import genomefile.fa.fai myalignments.sam \
-	myalignments.bam 
-	\end{verbatim}
-	\item Sort the BAM file:
-	\begin{verbatim}
-	samtools sort myalignments.bam -o myalignments.sorted.bam
-	\end{verbatim}
-	%samtools merge -f merged.bam *sorted.bam # Merge BAM files--note not necessary here
-	\item Index the BAM file:
-	\begin{verbatim}
-	samtools index myalignments.sorted.bam 
-	\end{verbatim}
-	\item View BAM file in SAMtools:
-	\begin{verbatim}
-	samtools tview myalignments.sorted.bam genomefile.fa
-	\end{verbatim}
-	\end{enumerate}
-\end{frame}
+## SAMtools Example
+My fast and simple script for SAMtools preparation:
+
+```{python, eval=F}
+python prepsam.py genomefile.fa myalignments.sam
+```	
+
+The script can also prepare and merge multiple .sam files (e.g.):
+```{python, eval=F}
+python prepsam.py genomefile.fa sam1.sam sam2.sam
+python prepsam.py genomefile.fa *.sam
+```
+--> 
+
+## SAMtools Example
+\Large
+SAMtools commands:
+
+- The one command to remember: '?'
+- g: go to a specific location (i.e. chrX:152852988 or chrX_149913753:2939235)
+- m,b: mapping quality, base quality
+- n: color by nucleotide
+- '.': dot/base view
+- r: read name
+- q: quit SAMtools
 
 
-\begin{frame}[fragile]	
-	\frametitle{SAMtools Example}
-	My fast and simple script for SAMtools preparation:
-	\begin{verbatim}
-	python prepsam.py genomefile.fa myalignments.sam
-	\end{verbatim}
-	
-	\vskip .1in
-	The script can also prepare and merge multiple .sam files (e.g.):
-	\begin{verbatim}
-	python prepsam.py genomefile.fa sam1.sam sam2.sam
-	python prepsam.py genomefile.fa *.sam
-	\end{verbatim}
+## SAM/BAM/CRAM Format -- Conversions
+```{bash, eval=F}
+# Convert SAM to BAM
+samtools view -bS in.sam > out.bam
+
+# Convert BAM to SAM
+samtools view -ho out.sam in.bam
+
+# Convert BAM to fastq
+samtools bam2fq in.bam > out.fastq
+```
 
 
-\end{frame}
+## RSamtools
+`Rsamtools` is a very useful (although somewhat limited) version of Samtools available in R:
 
-\frame
-{
-	\frametitle{SAMtools Example}
-	SAMtools commands:
-	\begin{itemize}
-		\item The one command to remember: `?'
-		\item g: go to a specific location (i.e. chrX:152852988 or chrX\_149913753:2939235)
-		\item m,b: mapping quality, base quality
-		\item n: color by nucleotide
-		\item `.': dot/base view
-		\item r: read name
-		\item q: quit SAMtools
-	\end{itemize}
+```{r, eval=F}
+# Install Rsamtools
+BiocManager::install("Rsamtools")
 
-	% python prepsam.py genome/chrX_5MB.fa map_gnu/proband_short.sam
-}
--->
+# Convert SAM to BAM
+asBam(in.sam, out.bam)
+```
 
+You can also index and sort .bam files, as well as extract alignments from a .bam file (very useful!).
 
 # Other Data Formats
 
@@ -605,7 +697,7 @@ Optional fields:
 - ...
 
 ## bedtools intersect
-![](figs/qc/bedtools1.png)
+![](figs/qc/bedtools1.png){height=90%}
 
 ## bedtools merge
 ![](figs/qc/bedtools2.png)
@@ -639,116 +731,76 @@ The attribute list must begin with the one mandatory attribute:
 
 ## GTF format
 ![](figs/qc/gtf.png)
+## GFF/GTF encodes relationships
+![](figs/qc/gtf2.png)
 
+
+# SNP and Variant Calling
+
+## Methods for SNP Calling
+Methods for SNP calling:
+
+- Mapper/callers: MAQ, SOAPsnp, GNUMAP, Crossbow (Bowtie)
+- Callers: SAMtools (mpileup), GATK (HaplotypeCaller, Mutect2), FreeBayes, others
+
+
+## Inconsistencies Among Aligners
+Low concordance of variant-calling pipelines (O'Rawe, _Genome Med_, 2013)
+
+\center
+![](figs/qc/discordance.png){height=80%}
+
+
+
+## SAMtools Example
+Multiple sample SNP calling:
+
+```{bash, eval=F}	
+samtools mpileup -f genomefile.fa \ 
+  myalignments.sorted.bam > myalignments.vcf
+```
 
 <!--
-
-\section{SNP Calling}
-\subsection{Methods for SNP Calling }
-\frame
-{
-	\frametitle{Methods for SNP Calling }
-	Methods for SNP calling:
-	\begin{itemize}
-		\item Mapper/callers: MAQ, SOAPsnp, GNUMAP, Crossbow (Bowtie)
-		\item Callers: SAMtools (mpileup), GATK (HaplotypeCaller, Mutect2), FreeBayes, others
-	\end{itemize}	
-	}
-
-
-
-\begin{frame}{Inconsistencies Among Aligners}
-Low concordance of variant-calling pipelines (O'Rawe, {\it Genome Med}, 2013)
-\begin{center}
-	\includegraphics[height=2.8in]{figures/discordance}
-\end{center}
-\end{frame}
-
-
-
-\begin{frame}[fragile]	
-	\frametitle{SAMtools Example}
-	\begin{itemize}
-	\item Multiple sample SNP calling:
-	\begin{verbatim}
-	samtools mpileup -f genomefile.fa \ 
-	myalignments.sorted.bam > myalignments.vcf
-	\end{verbatim}
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]	
-	\frametitle{GATK Example}
-	
-	\begin{verbatim}
-	java -jar CreateSequenceDictionary.jar \
+## GATK Example
+```{bash, eval=F}
+module load gatk
+java -jar CreateSequenceDictionary.jar \
 	R=chrX_5MB.fa O=chrX_5MB.dict
-	\end{verbatim}
 	
-	\vskip .05in
-	
-	\begin{verbatim}
-	gatk --java-options "-Xmx8G"  HaplotypeCaller \
+gatk --java-options "-Xmx8G"  HaplotypeCaller \
 	-R chrX_5MB.fa -I proband_short_bwa.sorted.bam \
 	-O proband_short.vcf
-	\end{verbatim}
-	
-	
-\end{frame}
+```
+--> 
+
+## VCF files
+![](figs/qc/vcf_format.png)
 
 
-\frame
-{
-	\frametitle{.vcf files}
-			\includegraphics[width=4.75in]{figures/vcf_format}
-}
+## Complete Variant Calling Pipeline  (Outdated!)}
+Our analysis pipeline consisted of the following:
 
+- Align the FASTQ files to genome
+- Convert SAM file to BAM, add read group info
+- Filter the reads based on quality (BAMTools)
+- Samtools to sort and index, and use Picard to mark duplicates
+- GATK calibration, realignment, variant calling (HaplotypeCaller, Mutect2)
+- Filter the called variants (GATK filtersnps and filterindels).
+- Annotation of SNPs (snpEff, condel)
+- Filter by frequency (thousand genomes, TCGA, etc.)
+- Downstream analysis (rare variants, pedigree, pathway level, etc)		
 
+## Downstream Annotation and Analysis (Outdated!)
+Downstream Annotation Tools (old list):
 
-\frame
-{
-	\frametitle{Complete Variant Calling Pipeline  (Outdated!)}
-	Our analysis pipeline consisted of the following:
-	\begin{enumerate}
-		\item Align the FASTQ files to genome
-		\item Convert SAM file to BAM, add read group info
-		\item Filter the reads based on quality (BAMTools)
-		\item Samtools to sort and index, and use Picard to mark duplicates
-		\item GATK calibration, realignment, variant calling (HaplotypeCaller, Mutect2)
-		\item Filter the called variants (GATK filtersnps and filterindels).
-		\item Annotation of SNPs (snpEff, condel)
-		\item Filter by frequency (thousand genomes, TCGA, etc.)
-		\item Downstream analysis (rare variants, pedigree, pathway level, etc)		
-	\end{enumerate}
-}
+- snpEff (http://snpeff.sourceforge.net/)
+- Condel (http://bg.upf.edu/condel/home)
+- SIFT http://sift.jcvi.org/
+- Polyphen 2 http://genetics.bwh.harvard.edu/pph2/
+- http://mutationassessor.org/ 
+- Ensembl variant effect predictor (http://www.ensembl.org/info/docs/variation/vep/index.html)
+- Thousand Genomes variant frequency (e.g. 1% threshold) and Exome Sequence Project variant frequency (e.g. 1%).
 
-
-
-
-
-
-\subsection{Downstream Annotation and Analysis}
-\frame
-{
-	\frametitle{Downstream Annotation and Analysis (Outdated!)}
-	Downstream Annotation Tools (old list):
-	\begin{itemize}
-	 	\item snpEff (http://snpeff.sourceforge.net/)
-		\item Condel (http://bg.upf.edu/condel/home)
-			\begin{itemize}
-			\item SIFT http://sift.jcvi.org/
-			\item Polyphen 2 http://genetics.bwh.harvard.edu/pph2/
-			\item http://mutationassessor.org/ 
-			\end{itemize}
-		\item Ensembl variant effect predictor (http://www.ensembl.org/info/docs/variation/vep/index.html)
-		\item Thousand Genomes variant frequency (e.g. 1\% threshold) and Exome Sequence Project variant frequency (e.g. 1\%).
-	\end{itemize}
-
-	% python prepsam.py genome/chrX_5MB.fa map_gnu/proband_short.sam
-}
-
--->
 
 ## Session info
 \tiny
