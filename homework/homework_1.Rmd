@@ -48,6 +48,6 @@ Most Unix implementations include a large number of powerful tools and utilities
 
 \subsection*{GitHub}
 	\begin{enumerate}
-		\item Fork the \href{https://github.com/wevanjohnson/my.package}{https://github.com/wevanjohnson/my.package} directory and clone it to your local machine. Then add your name as an author in the DESCRIPTION file local repository and add a multiplication function to the R package (R folder). Then push the changes to your GitHub fork, and send me a pull request with your changes.  
+		\item Fork the \href{https://github.com/wevanjohnson/my.package}{https://github.com/wevanjohnson/my.package} directory and clone it to your local machine. Then add your name as an author in the DESCRIPTION file local repository and add a multiplication function to the R package (R folder). Then push the changes to your GitHub fork, and send me a pull request with your changes. Note: if password is required to push changes, create a token by going to your profile, selecting developer access settings to make your personal access tokens and inputting that into the password section. 
 		\item Clone the \href{https://github.com/wevanjohnson/2024\_Spring\_BDMA}{https://github.com/wevanjohnson/2024\_Spring\_BDMA} repository on your computer. Find something that could be improved (typo? explain somthing better), add files/changes to it, and upload it to GitHub. Send another well-annotated pull request to Dr. Johnson. 
 	\end{enumerate}
