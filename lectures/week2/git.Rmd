@@ -176,6 +176,17 @@ git push
 
 ## Working with Git repositories
 
+Due to Two Factor Authentication (2FA), now it is required to create a token in your account github settings and used it as a password when you run **git push**. It is noteworthy that you need to set up permissions for token to do certain actions with git repo.
+
+If you do a lot of commits and do not want to enter token each time, you can run next command: 
+```{bash, eval=F}
+git remote set-url origin \ 
+  https://<token>@github.com/<username>/<repo>
+```
+
+
+## Working with Git repositories
+
 We can also **fetch** any changes on the remote repo (how do you think this is different from `clone`?):
 
 ```{bash, eval=F}
