@@ -1,7 +1,9 @@
 ---
 title: "High Throughput Biomedical Data Analysis"
-date: Spring (April-June), 2024
-output: word_document
+date: "Spring (April-June), 2024"
+output:
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -96,12 +98,12 @@ Violations of academic integrity will be treated in accordance with university p
 Sequencing data preprocessing and quality control (Week 1)
 
 * 4/22/24:     Course introduction; Installation; Introduction to R 
-* 4/24/24:     Essential tools for Data Science: Unix, GitHub, HPC 
+* 4/24/24:     More Introduction to R, R Markdown, and Unix
 
 Sequencing data preprocessing and quality control (Week 2)
 
-* 4/29/24:     Data formats (.fasta, .fastq, .sam/.bam); FASTQC and multiQC 
-* 5/1/24:     Sequence trimming and QC; alignment and wrangling
+* 4/29/24:     Introduction to Amarel and OARC
+* 5/1/24:      Introduction to Github; Introduction to FASTA and Other Sequencing Formats
 
 Genomics data analysis: mutation, linkage, and phylogenetics (Week 3)
 
