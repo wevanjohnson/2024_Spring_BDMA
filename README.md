@@ -9,6 +9,7 @@ https://forms.gle/XSPjJjMsUa9EWXo2A
 ## COURSE DESCRIPTION:
 
 This class is an introduction to methods and tools for biomedical data analysis. The course will introduce basic and intermediate bioinformatics and statistical analyses for high-throughput biology, including sequencing data preprocessing and quality control, genome-wide association studies, gene expression and proteomics, epigenetics, metagenomics, and imaging data analysis. We will describe relevant methods and procedures for each context, and practice and apply code in each case. Examples will come from a variety of applications from molecular biology and biomedical research. Students be expected to use R and GitHub throughout this course.
+This course is very useful as an introductory for medical students who wants to pursue their career into data science. (Nehal) 
 
 ## COURSE OBJECTIVES:
 Students who take this course will: 
