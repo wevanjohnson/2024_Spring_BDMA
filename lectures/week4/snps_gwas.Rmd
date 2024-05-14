@@ -312,6 +312,7 @@ For coding (exonic) variants:
 
 ## dbSNP - NCBI SNP Database
 ![](figs/dbsnp.png)
+
 ## Variants Smaller Than A Read
 
 \Large
