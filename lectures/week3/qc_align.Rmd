@@ -501,15 +501,15 @@ module load bwa
 # Index the genome:
 bwa index genomefile.fa 
 
-# Align the reads$^*$:
+# Align the reads:
 bwa mem genomefile.fa myfastqfile.fq > bwaalign.sam
+
+# Note: for use with gatk (will learn later) bwa mem 
+# should include a `read group' header as well, e.g.: 
+-R "@RG\tID:group1\tSM:sam1\tPL:illumina\tLB:lib1\tPU:unit1" 
 ```
 
-<!--
-# Note: the bwa mem should include a `read group' header as well, e.g.: 
--r @RG\tID:group1\tSM:sample1\tPL:illumina\tLB:lib1\tPU:unit1 
--->
-	
+
 ## Bowtie2 Example (OnDemand Amarel Desktop)
 
 ```{bash, eval=F}
@@ -646,7 +646,7 @@ You can also index and sort .bam files, as well as extract alignments from a .ba
 
 ## Genomic regions
 
--A region is defined by three required fields:
+- A region is defined by three required fields:
   - sequence name (e.g. chromosome)
   - start coordinate
   - end coordinate

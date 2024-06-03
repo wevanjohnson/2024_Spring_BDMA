@@ -387,7 +387,7 @@ acc = "SRR1528344"
 
 ## Download using fastq-dump 
 fastq-dump $acc
-# also note the option --split-3 is needed for paired end reads
+# option --split-3 is needed for paired end reads
 
 ## don't forget to compress the file!
 gzip $acc.fastq
@@ -405,26 +405,26 @@ do
 done
 ```
 
-## Batch scipt (SLURM)
+## Batch script (SLURM)
 
 \small
 ```{bash, eval=F}
 #!/bin/bash
 #SBATCH --job-name=microbiome_download
-#SBATCH --array=1-28
-#SBATCH --cpus-per-task=1
 #SBATCH --mem=1G
-#SBATCH --time=00:20:00
+#SBATCH --time=01:00:00
 
 module load sratoolkit
 cd $HOME/tmp/
 
 accs=( $( cat SRR_Acc_List.txt ) )
-acc_number=$accs$[(($SLURM_ARRAY_TASK_ID-1))]
-
-fastq-dump $acc_number
-gzip $acc_number*
+for i in $(seq 0 ${#accs[@]}) 
+do 
+	fastq-dump ${a[i]};
+	gzip ${a[i]}*
+done
 ```
+Save as a file and use `sbatch` to submit
 
 ## Batch array (SLURM)
 
@@ -433,7 +433,7 @@ gzip $acc_number*
 #!/bin/bash
 #SBATCH --job-name=microbiome_download
 #SBATCH --output=asthma.out
-#SBATCH --array=1-28
+#SBATCH --array=0-27
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=1G
 #SBATCH --time=00:20:00
@@ -442,7 +442,7 @@ module load sratoolkit
 cd $HOME/tmp/
   
 accs=( $( cat SRR_Acc_List.txt ) )
-acc_number=${accs[(($SLURM_ARRAY_TASK_ID-1))]}
+acc_number=${accs[$SLURM_ARRAY_TASK_ID]}
 
 fastq-dump $acc_number
 gzip $acc_number*
