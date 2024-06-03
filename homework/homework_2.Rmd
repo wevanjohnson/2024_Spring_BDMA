@@ -13,7 +13,7 @@ Now its time to practice what we have learned in class and learn even more! For 
 ## DNA-sequencing and GWAS analysis
 
 1. To access the data for Homework 2, please download the following (just normal point and click, not need to curl or wget): https://www.dropbox.com/scl/fi/ezilkcxjjhlcft20965fz/ogdens_data.tar?rlkey=jshzg6d0h7e7q58hucue2h0up&st=pa8xh3jo&dl=0
-2. Use `samtools` to merge the `proband_29.fq.gz` and the `proband_short.fg.gz` files -- these are from the same sample 
+2. Use `cat` in Unix to merge the `proband_29.fq.gz` and the `proband_short.fg.gz` files -- these are from the same sample 
 3. Use `FASTQC` and `MultiQC` to summarize the fastq files for these datasets. For which diagnostics do these data fail? Should we be concerned about the quality of these data? Why or why not? 
 4. Align genome sequences from these human sequencing experiment using `bwa` to the `chrX_5MB.fa` reference. 
 5. Process the reads through `samtools mpileup` to generate a .vcf file. 
