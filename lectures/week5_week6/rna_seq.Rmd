@@ -371,10 +371,10 @@ We can use BatchQC to evaluate and correct for batch effects:
 ```{r, eval=F}
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
+BiocManager::install("BatchQC")
 
 library(BatchQC)
 BatchQC()
-BiocManager::install("BatchQC")
 ```
 
 
@@ -696,7 +696,7 @@ signatureHeatmap(ssgsea_res,
 ```
 
 ## Signature Heatmap:
-```{r, echo=F}
+```{r, echo=F, fig.height=6.5}
 # Colors for gradient
 signatureHeatmap(ssgsea_res, 
         name = "Heatmap of Signatures (ssGSEA)", 
@@ -708,9 +708,14 @@ signatureHeatmap(ssgsea_res,
 ```
 
 ## Signature Boxplots
-```{r, warning=F}
+```{r, warning=F, fig.height=5}
 signatureBoxplot(ssgsea_res, name="ssGSEA", 
-          signatureColNames = names(TBsigs)[1:4],
+          signatureColNames = names(TBsigs)[c(62,77)],
           annotationColName = c("Disease"))
 ```
 
+## Session info
+\tiny
+```{r session info}
+sessionInfo()
+```
