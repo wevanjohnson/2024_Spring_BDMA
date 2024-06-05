@@ -394,7 +394,7 @@ group <- meta_data$Disease
 
 ## Visualization and dimension reduction
 ```{r}
-## Make SummarizedExperiemnt
+## Make SummarizedExperiment
 sce_hivtb <- SummarizedExperiment(assays=list(counts=counts),
                      colData = meta_data)
 
@@ -489,13 +489,13 @@ Implements statistical methods for DE analysis based on the negative binomial mo
 
 ```{r}
 #Gene Filtering
-counts<-counts[which(rowSums(cpm(counts))>1),] 
+counts<-counts[which(rowSums(counts)>1),] 
 #Computes library size
 dge <- DGEList(counts=counts, group=group) 
 #TMM normalization
 dge <- calcNormFactors(dge) 
 # Design matrix
-design<-model.matrix(~group)
+design<-model.matrix(~Disease, data=meta_data)
 #Estimates common, trended and tagwise dispersion
 dge<-estimateDisp(counts,design) 
 ```
@@ -629,7 +629,6 @@ Heatmap(mat,show_row_names=F,
 dge <- DGEList(counts=counts, group=group) 
 #Gene Filtering
 counts<-counts[which(rowSums(cpm(counts))>1),] 
-dge <- DGEList(counts=counts, group=group) 
 dge <- calcNormFactors(dge) #TMM normalization
 ```
 
