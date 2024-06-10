@@ -17,7 +17,7 @@ editor_options:
 tables: true
 ---
 
-
+<!--
 ## Installing and using the SCTK
 
 ```{r, eval=F}
@@ -29,6 +29,7 @@ singleCellTK()
 ### Example: open downstream_analysis/ 
 ### features_combined.txt and meta_data.txt
 ```
+-->
 
 ## Cells are Important
 \begin{columns}
@@ -60,7 +61,7 @@ singleCellTK()
 | DNA amount | ~ .3-16 fg | ~3-300,000 fg | 
 | RNA amount | ~ 5-26,000 fg | ~ 1,000-350,000 fg |
 
-\small
+\tiny
 Landenmark HKE, Forgan DH, Cockell CS (2015). An Estimate of the Total DNA in the Biosphere. PLoS Biol 13(6): e1002168. https://doi.org/10.1371/journal.pbio.1002168
 
 
