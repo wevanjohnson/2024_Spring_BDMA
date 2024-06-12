@@ -345,7 +345,7 @@ Sparse: most will be zero!
 #SBATCH --array=0-3,5,6
 #SBATCH --cpus-per-task=30
 #SBATCH --mem=100G
-#SBATCH --time=04:00:00
+#SBATCH --time=24:00:00
 
 # path to fastq files
 FASTQPATH=/scratch/$USER/tmp/awsbucket/fastqs/

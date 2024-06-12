@@ -439,7 +439,7 @@ Save as a file and use `sbatch` to submit
 #SBATCH --time=00:20:00
 
 module load sratoolkit
-cd $HOME/tmp/
+cd /scratch/$USER
   
 accs=( $( cat SRR_Acc_List.txt ) )
 acc_number=${accs[$SLURM_ARRAY_TASK_ID]}
