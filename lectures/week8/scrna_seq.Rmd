@@ -369,7 +369,7 @@ cd $FASTQPATH
 # load python 
 module load python/3.8.2
 
-$crpath/./cellranger count --id=$FASTQ 
+$crpath/./cellranger count --id=$FASTQ \
    --create-bam=true \	# true or false, necessary
    --sample=$FASTQ \ # prefix of files to align
    --fastqs=$FASTQPATH \ 

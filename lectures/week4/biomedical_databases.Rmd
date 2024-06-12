@@ -444,8 +444,7 @@ cd $HOME/tmp/
 accs=( $( cat SRR_Acc_List.txt ) )
 acc_number=${accs[$SLURM_ARRAY_TASK_ID]}
 
-fastq-dump $acc_number
-gzip $acc_number*
+fastq-dump --gzip $acc_number
 ```
 
 Save as a file and use `sbatch` to submit
