@@ -1,0 +1,376 @@
+---
+title: "2024_Spring_BDMA_singlecell_example"
+author: "Arthur VanValkenburg"
+date: "2022-09-02"
+output: pdf_document
+---
+
+
+```{r setup, include=FALSE}
+suppressPackageStartupMessages({
+  library(SummarizedExperiment)
+  library(edgeR)
+  library(sva)
+  library(SingleCellExperiment)
+  library(DESeq2)
+  library(DT)
+  library(umap)
+  library(ggplot2)
+  library(ComplexHeatmap)
+  library(tidyverse)
+  library(Seurat)
+  library(SeuratObject)
+  library(SeuratWrappers)
+  library(Azimuth)     
+  library(patchwork)
+  library(cowplot)
+  library(RColorBrewer)
+  library(plotly)
+  library(scRepertoire)
+})
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load data
+```{r}
+
+# Cai data, from DOI: 10.1016/j.ebiom.2020.102686
+## read in counts
+TB <- file.path("data/cellranger_outs/cai_data/SRR11038990/outs/raw_feature_bc_matrix")
+
+LTBI <- file.path("data/cellranger_outs/cai_data/SRR11038992/outs/raw_feature_bc_matrix")
+
+
+## list of counts
+data.ls <- list("TB"=TB, "LTBI"=LTBI)
+
+# Load the PBMC dataset
+pbmc.data <- lapply(data.ls, Read10X)
+
+
+#Initialize the Seurat object with the raw (non-normalized data).
+pbmc.ls <- mapply(function(x,y) CreateSeuratObject(counts=x,
+                                                 project=y,
+                                                 min.cells=3, 
+                                                 min.features=200),pbmc.data, names(pbmc.data), SIMPLIFY=F)  
+
+
+                                                             
+# remove objects to save memory
+rm(pbmc.data, data.ls)
+```
+
+
+
+
+# QC 
+QC should probably be done by hand. You can write your own functions to keep all cells within 95% of the mean or a different number but I check this by hand.
+
+Cells with too high of genes (Features) or readcounts might be doublets or poor quality if too low. Because cellranger handled the trimming and doesn't always recognize it, it's best to to QC after. 
+
+Doublets (from flow cytometry) can interfere with your analysis but removing them isn't always straightforward. There are several different methods and you should read about them. 
+```{r}
+# The [[ operator can add columns to object metadata. This is a great place to stash QC stats; AddMetadata() should also work
+#pbmc.ls$TB[["percent.mt"]] <- PercentageFeatureSet(pbmc.ls[[1]], pattern = "^MT-")
+## this adds mitochondrial DNA percentage
+for(i in 1:length(pbmc.ls)) {
+pbmc.ls[[i]][["percent.mt"]] <- PercentageFeatureSet(pbmc.ls[[i]], pattern = "^MT-")}
+
+# Visualize QC metrics as a violin plot, with Seurat::VlnPlot
+lapply(pbmc.ls, VlnPlot, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+```
+
+### Plot TB
+```{r}
+# need to do this for each one individually
+pbmc <- pbmc.ls[[1]]
+# FeatureScatter is typically used to visualize feature-feature relationships, but can be used
+# for anything calculated by the object, i.e. columns in object metadata, PC scores etc.
+plot1 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "percent.mt") +
+          geom_hline(yintercept=8) + 
+          #geom_vline(xintercept = 200) +
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+plot2 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") +
+          geom_smooth(method="lm") +
+          geom_hline(yintercept=500) +
+          geom_vline(xintercept = 24000) + 
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+plot1 + plot2
+
+```
+#### Filtering
+```{r}
+table(pbmc$orig.ident)
+# Filter from Loupe object; removes NAs
+pbmc <- subset(pbmc, subset=nFeature_RNA>500 & nCount_RNA < 24000 & percent.mt < 8 )
+# 
+table(pbmc$orig.ident) 
+```
+
+#### Filtering graphs
+```{r}
+VlnPlot(pbmc, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+
+plot1 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "percent.mt") +
+          geom_hline(yintercept=8) + 
+          geom_vline(xintercept = 200) +
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+plot2 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") +
+          geom_smooth(method="lm") +
+          geom_hline(yintercept=500) +
+          geom_vline(xintercept = 24000) + 
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+plot1 + plot2
+
+```
+
+#### filtered seurat object list
+```{r}
+pbmc.fs <- list()
+pbmc.fs[["TB"]] <- pbmc
+```
+
+
+
+
+### Plot LTBI
+```{r}
+# need to do this for each one individually
+pbmc <- pbmc.ls[[2]]
+# FeatureScatter is typically used to visualize feature-feature relationships, but can be used
+# for anything calculated by the object, i.e. columns in object metadata, PC scores etc.
+plot1 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "percent.mt") +
+          geom_hline(yintercept=8) + 
+          #geom_vline(xintercept = 200) +
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+plot2 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") +
+          geom_smooth(method="lm") +
+          geom_hline(yintercept=600) +
+          geom_vline(xintercept = 24000) + 
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+plot1 + plot2
+
+```
+#### Filtering
+```{r}
+table(pbmc$orig.ident)
+#pbmc.1 <- subset(pbmc, subset=nCount_RNA >200 & nCount_RNA < 4500 & percent.mt < 8 )
+# Filter from Loupe object; removes NAs
+pbmc <- subset(pbmc, subset=nFeature_RNA>600 & nCount_RNA < 24000 & percent.mt < 8 )
+# 
+table(pbmc$orig.ident) #9383 cells
+```
+
+#### Filtering graphs
+```{r}
+VlnPlot(pbmc, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+
+plot1 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "percent.mt") +
+          geom_hline(yintercept=8) + 
+          #geom_vline(xintercept = 200) +
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+plot2 <- FeatureScatter(pbmc, feature1 = "nCount_RNA", feature2 = "nFeature_RNA") +
+          geom_smooth(method="lm") +
+          geom_hline(yintercept=600) +
+          geom_vline(xintercept = 24000) + 
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+plot1 + plot2
+
+```
+
+#### filtered seurat object list
+```{r}
+# add to filtered seurat object list
+pbmc.fs[["LTBI"]] <- pbmc
+```
+
+
+## Azimuth
+Predicts celltypes with a reference
+```{r}
+pbmc.fs <- lapply(pbmc.fs, RunAzimuth, reference = "pbmcref")
+```
+
+
+# Seurat pipeline
+Data needs to be normalized and scaled before comparisons can me made. You can find vignettes using Normalize(), ScaleData(), and FindVariableFeatures(). This is necessary before you integrate your seurat objects using FindIntegrationAnchors() and then IntegrateData(). 
+
+However, with version 5+, the prefered method is SCTransform(). Also, results are now stored in layers, so the structure of a Seurat object has changed. Remember this if you are looking at older data processed with earlier versions of Seurat. More info as to why this version is better can be found at https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02451-7.
+```{r}
+rm(pbmc.ls, pbmc) # memory is an issue 
+
+# normalizes, scales, and finds variable features
+#pbmc <- SCTransform(object = pbmc)
+
+pbmc.fs <- lapply(pbmc.fs, SCTransform, 
+                            vars.to.regress="percent.mt", # not a substitute for batch correction
+                            variable.features.n = 3000, # default is 3000
+                            return.only.var.genes	=F)  # default is T
+
+
+#dir.create(file.path("data_processed"))
+saveRDS(pbmc.fs, "data_processed/cai_class.RDS")
+```
+
+# Integrate
+```{r}
+# select number of features
+features <- SelectIntegrationFeatures(pbmc.fs, assay=c("SCT","SCT"), nfeatures = 22000)
+
+# merge the object
+merged_obj.fs <- merge(x = pbmc.fs$TB , y = pbmc.fs$LTBI, add.cell.ids = c("TB", "LTBI"), project = "MEMBCELLsc", merge.data = TRUE, na.rm=T)
+
+# remove unmerged object
+rm(pbmc.fs, plot1, plot2)
+# save merged_obj.fs
+saveRDS(merged_obj.fs, "data_processed/class_merged.RDS")
+# prep for differential expression
+## normalizes read depth
+merged_obj.fs <- PrepSCTFindMarkers(merged_obj.fs, assay = "SCT", verbose = TRUE)
+
+
+Idents(merged_obj.fs) <- merged_obj.fs$orig.ident
+markers <- FindMarkers(
+  object = merged_obj.fs,
+  ident.1 = "TB",
+  ident.2 = "LTBI",
+  assay = "SCT", method="wilcox"
+)
+#dir.create("outs/diffex/")
+markers.sig <- filter(markers, p_val_adj < 0.05)
+#write.csv(markers.sig, "outs/diffex/class_allsctgenes.csv")
+```
+
+## Integrated obj processing
+We now have to join the layers
+```{r}
+
+VariableFeatures(merged_obj.fs) <- features # required for PCA; I'm sure future seurat versions will fix this
+
+merged_obj.fs <- RunPCA(merged_obj.fs) # uses PCA to join layers
+options(future.globals.maxSize = 5000 * 1024^2) # allocates memory to 5G RAM; might need to increase depending on size
+
+merged_obj.fs <- IntegrateLayers(object = merged_obj.fs, method = RPCAIntegration, normalization.method = "SCT", verbose = F)
+
+merged_obj.fs <- FindNeighbors(merged_obj.fs, reduction = "integrated.dr", dims = 1:30)
+merged_obj.fs <- RunUMAP(merged_obj.fs, reduction="integrated.dr", dims = 1:30)
+merged_obj.fs <- FindClusters(merged_obj.fs, resolution = 0.6,cluster.name = "sct_clusters")
+
+# save obj
+saveRDS(merged_obj.fs, "data_processed/class_merged_obj.RDS")
+merged_obj.fs <- readRDS( "data_processed/class_merged_obj.RDS")
+```
+# Explore
+## Dimension Reduction
+
+### UMAP
+```{r}
+DimPlot(
+  merged_obj.fs,
+  reduction = "umap",
+  split.by="orig.ident",
+  group.by = c( "sct_clusters"),
+  combine = FALSE, label.size = 2, label = T
+)
+```
+
+
+```{r}
+DimPlot(
+  merged_obj.fs,
+  reduction = "umap",
+  split.by="orig.ident",
+  group.by = c( "sct_clusters", "predicted.celltype.l1", "predicted.celltype.l2", "predicted.celltype.l3"),
+  combine = FALSE, label.size = 2, label = T
+)
+```
+## barplots by celltype
+```{r}
+library(data.table)
+md <- merged_obj.fs@meta.data %>% as.data.table
+# the resulting md object has one "row" per cell
+
+## count the number of cells per unique combinations of "Sample" and "seurat_clusters"
+x <- md[, .N, by = c("orig.ident", "predicted.celltype.l3")]%>% dcast(., orig.ident ~ predicted.celltype.l3, value.var = "N")
+
+x <- column_to_rownames(x, var="orig.ident")
+y <- x/rowSums(x, na.rm=T)
+# #write.csv(y, file.path(path, "cell_percentage_by_cluster.csv"))
+# #write.csv(x, file.path(path, "cell_number_by_cluster.csv"))
+y <- rownames_to_column(y, var="TB_status")
+
+
+z <- reshape2::melt(y)
+z[is.na(z)] <- 0
+p <- ggplot(data=z, aes(x=variable, y=value, fill=TB_status)) +
+geom_bar(stat="identity", color="black", position=position_dodge())+
+  theme_minimal() +theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+# Use brewer color palettes
+p + scale_fill_brewer(palette="Blues")
+```
+
+## dotplots
+```{r}
+# Add groups
+merged_obj.fs$group <- paste( merged_obj.fs$predicted.celltype.l1,merged_obj.fs$orig.ident, sep="_")
+markers.to.plot <- c("CD19", "TNFRSF13B", "CD27",  "MYC")
+Idents(merged_obj.fs) <- merged_obj.fs$group
+DotPlot(merged_obj.fs, 
+        features = rev(markers.to.plot), 
+        cols = c("blue","red"),
+        dot.scale = 8,
+        scale.by="size", 
+        scale.max=30, col.min = -0.9) + RotatedAxis()
+
+
+```
+## Feature Plot
+```{r}
+FeaturePlot(merged_obj.fs, features = "CD19")
+```
+
+## Violin plots
+```{r}
+Idents(merged_obj.fs) <- merged_obj.fs$group
+VlnPlot(merged_obj.fs, features = markers.to.plot)
+```
+## Heatmap
+```{r}
+# Single cell heatmap of feature expression
+DoHeatmap(subset(merged_obj.fs, downsample = 100), features = markers.to.plot, size = 3)
+```
+
+
+## gene signature enrichment
+```{r}
+# Read genelist of associated paper
+# library("clipr")
+# bcr_signaling <- read_clip_tbl()
+bcr_signaling <- append(bcr_signaling, "AKT3")
+#dz <- list(genes_dz$dark_zone)
+
+# Plot scores
+colors <- scale_colour_gradientn(colours = rev(brewer.pal(n = 11, name = "RdBu")))
+
+merged_obj.fs <- AddModuleScore(object=merged_obj.fs,
+            features=bcr_signaling,
+            name="bcr_signaling",
+            assay="SCT",
+            search=T
+            )
+
+# Plot scores
+FeaturePlot(merged_obj.fs,
+            features = "bcr_signaling1", label = TRUE, repel = TRUE) + colors
+```
+
+
+
+
+# SessionInfo
+```{r}
+sessionInfo()
+```
+
+
